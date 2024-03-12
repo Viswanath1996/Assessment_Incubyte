@@ -1,0 +1,122 @@
+
+
+Traditional Style Test Cases:
+Positive Test Cases:
+
+TC1: Compose Email Successfully
+Input: User navigates to the compose section, fills in recipient email, subject "Incubyte", and body "QA test for Incubyte", then clicks send.
+Expected Output: Email is sent successfully.
+
+TC2: Verify Subject and Body Content
+Input: User composes an email with subject "Incubyte" and body "QA test for Incubyte".
+Expected Output: Subject and body content are correctly displayed in the email preview before sending.
+
+TC3: Compose Email with Attachments
+Input: User attaches a file while composing an email with subject "Incubyte" and body "QA test for Incubyte".
+Expected Output: Email is sent with the attachment successfully.
+
+TC4: Compose Email with CC and BCC
+Input: User composes an email with recipient, subject "Incubyte", and body "QA test for Incubyte", adds recipients to CC and BCC fields, then clicks send.
+Expected Output: Email is sent successfully to all recipients including CC and BCC.
+
+TC5: Send Email with HTML Content
+Input: User composes an email with subject "Incubyte" and body "QA test for <b>Incubyte</b>" using HTML formatting.
+Expected Output: Email is sent with the body content formatted in HTML correctly.
+
+TC6: Send Email with Inline Images
+Input: User composes an email with subject "Incubyte", body "QA test for Incubyte", and inserts inline images.
+Expected Output: Email is sent with inline images displayed correctly in the body.
+
+
+Negative Test Cases:
+TC1: Send Email without Subject
+Input: User composes an email without specifying a subject but fills in the recipient and body.
+Expected Output: Gmail prompts the user to provide a subject before sending.
+
+TC2: Send Email without Body
+Input: User composes an email with subject "Incubyte" but leaves the body empty.
+Expected Output: Gmail prompts the user to provide a body before sending.
+
+TC3: Send Email with Invalid Recipient
+Input: User composes an email with an invalid recipient email address.
+Expected Output: Gmail should prompt the user with an error message indicating an invalid recipient.
+
+TC4: Send Email with Large Attachment
+Input: User attaches a file larger than the allowed attachment size.
+Expected Output: Gmail should display an error message indicating the attachment size exceeds the limit.
+Additional Edge Cases:
+
+TC5: Compose Email with Maximum Recipients
+Input: User composes an email with the maximum number of recipients allowed.
+Expected Output: Email is sent successfully to all recipients without any issues.
+
+TC6: Send Email with Maximum Character Limit in Subject and Body
+Input: User composes an email with subject and body containing the maximum allowed characters.
+Expected Output: Email is sent successfully without truncating the subject or body content.
+
+
+
+BDD-style Test Cases:
+Positive Test Cases:
+
+Feature: Compose Email
+
+Scenario 1 : User wants to compose an email
+Given the user is on the Gmail homepage
+When the user clicks on the compose button
+Then the compose email window should open
+
+Scenario 2 : User successfully sends an email
+Given the user is composing an email
+When the user fills in recipient, subject "Incubyte", and body "QA test for Incubyte"
+And clicks on the send button
+Then the email should be sent successfully
+
+
+Scenario 3 : User composes email with CC and BCC
+   Given the user is composing an email
+   When the user fills in recipient, subject "Incubyte", and body "QA test for Incubyte"
+   And adds recipients to CC and BCC fields
+   And clicks on the send button
+   Then the email should be sent successfully to all recipients including CC and BCC
+
+Scenario 4 : User composes email with HTML content
+   Given the user is composing an email
+   When the user fills in recipient, subject "Incubyte", and body "QA test for <b>Incubyte</b>" using HTML formatting
+   And clicks on the send button
+   Then the email should be sent successfully with the body content formatted in HTML correctly
+
+Scenario 5 : User composes email with inline images
+   Given the user is composing an email
+   When the user fills in recipient, subject "Incubyte", body "QA test for Incubyte", and inserts inline images
+   And clicks on the send button
+   Then the email should be sent successfully with inline images displayed correctly in the body
+
+
+
+Negative Test Cases:
+Feature: Compose Email
+
+Scenario 1 : User tries to send email without subject
+Given the user is composing an email
+When the user fills in recipient and body but leaves the subject empty
+And clicks on the send button
+Then Gmail should prompt the user to provide a subject
+
+Scenario 2 : User tries to send email without body
+Given the user is composing an email
+When the user fills in recipient and subject "Incubyte" but leaves the body empty
+And clicks on the send button
+Then Gmail should prompt the user to provide a body
+
+Scenario 3 : User composes email with maximum recipients
+   Given the user is composing an email
+   When the user fills in recipient, subject "Incubyte", and body "QA test for Incubyte" with the maximum number of recipients allowed
+   And clicks on the send button
+   Then the email should be sent successfully to all recipients without any issues
+
+Scenario 4 : User composes email with maximum character limit in subject and body
+   Given the user is composing an email
+   When the user fills in recipient, subject, and body with the maximum allowed characters
+   And clicks on the send button
+   Then the email should be sent successfully without truncating the subject or body content
